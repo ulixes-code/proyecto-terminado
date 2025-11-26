@@ -59,6 +59,12 @@
       width: 80%;
       max-width: 600px;
       cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .promo:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(255,0,0,0.4);
     }
 
     .promo img {
@@ -76,6 +82,7 @@
       cursor: pointer;
       font-weight: bold;
       margin: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     button:hover {
@@ -105,6 +112,13 @@
       color: #f5f5f5;
       border: 2px solid rgba(255,0,0,0.18);
       box-shadow: 0 8px 40px rgba(160,0,0,0.18);
+      transform: translateY(30px) scale(0.96);
+      opacity: 0;
+      animation: modalIn 0.28s forwards ease-out;
+    }
+
+    @keyframes modalIn {
+      to { transform: translateY(0) scale(1); opacity: 1; }
     }
 
     .modal h3 { margin: 0 0 8px; }
@@ -172,6 +186,7 @@
   <div class="modal-bg" id="modalSeguirBg">
     <div class="modal">
       <h3>¿Deseas seguir comprando?</h3>
+      <p>Tu carrito fue procesado.</p>
       <div class="controls">
         <button id="btnSeguir">Sí</button>
         <button id="btnNoSeguir">No</button>
@@ -188,7 +203,7 @@
     const btnNoSeguir = document.getElementById('btnNoSeguir');
 
     btnComprarArray.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         modalNoti.style.display = 'flex';
       });
     });
