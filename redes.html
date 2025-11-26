@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes Sociales - Inframundo</title>
+    <link rel="stylesheet" href="estilos.css">
+
+    <style>
+        .redes-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .red-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .red-icon img {
+            width: 70px;
+        }
+
+        .red-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px red;
+        }
+
+        .proposito {
+            width: 80%;
+            margin: auto;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: #e6e6e6;
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 3px solid crimson;
+            line-height: 1.6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Redes del Inframundo</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="promociones.html">Promociones</a></li>
+            <li><a href="jerarquia.html">Jerarquía</a></li>
+            <li><a href="sucursales.html">Sucursales</a></li>
+            <li><a href="redes.html" class="activo">Redes Sociales</a></li>
+            <li><a href="cancerbero.html">ofrenda</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- EXPLICACIÓN DEL PROPÓSITO -->
+<div class="proposito">
+    <h2>¿Por qué creamos este reino digital?</h2>
+    <p>
+        Nació de una chispa oscura y curiosa — la necesidad de darle voz a los secretos
+        que duermen bajo la tierra.  
+        Aquí reunimos saberes prohibidos, productos malditos, jerarquías olvidadas
+        y caminos hacia el abismo para quienes sienten que la luz se queda corta.  
+        Este sitio es un puente:  
+        un espacio donde la fantasía, el mito y lo oculto se mezclan con la estética
+        del inframundo.  
+        Lo hicimos para que cada viajero del caos encuentre respuestas,
+        inspiración y un rincón donde la oscuridad también pueda sentirse hogar,
+        en conclusion, queriamos mostrar algo diferente y fuera de lo tipico.
+    </p>
+</div>
+
+<h2 style="text-align:center; margin-top:40px;">Nuestras Redes Sociales</h2>
+
+<div class="redes-container">
+    <div class="red-icon" onclick="irARed('https://www.facebook.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png">
+    </div>
+
+    <div class="red-icon" onclick="irARed('https://www.instagram.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+    </div>
+
+    <div class="red-icon" onclick="irARed('https://www.tiktok.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+    </div>
+
+    <div class="red-icon" onclick="irARed('https://web.whatsapp.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+    </div>
+
+    <div class="red-icon" onclick="irARed('https://www.youtube.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+    </div>
+
+    <div class="red-icon" onclick="irARed('https://twitter.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968849.png">
+    </div>
+</div>
+
+<script>
+    function irARed(url) {
+        window.open(url, "_blank"); 
+    }
+</script>
+
+
+  <footer>
+    <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino</p>
+  </footer>
+
+</body>
+</html>

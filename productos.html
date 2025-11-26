@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Productos - Demonología Antigua</title>
+  <style>
+    :root{ --bg:#0d0d0d; --card:#1a1a1a; --crim:crimson; --accent:#a00000; --light:#ffeded; }
+    *{box-sizing:border-box}
+    body{ margin:0; padding:0; background:var(--bg); color:var(--light); font-family:Georgia, serif; }
+    header{ background:var(--card); padding:18px 20px; border-bottom:2px solid var(--crim); text-align:center; }
+    header h1{ margin:0; color:var(--crim); }
+    nav ul{ list-style:none; margin:12px 0 0; padding:0; display:flex; justify-content:center; gap:20px; }
+    nav a{ color:var(--light); text-decoration:none; font-weight:700; transition:.18s; }
+    nav a:hover{ color:var(--crim); transform:translateY(-2px); }
+
+    main{ padding:26px; display:flex; gap:26px; justify-content:center; align-items:flex-start; min-height:70vh; }
+
+    .contenedor-productos{
+      width:100%; max-width:1100px;
+      display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:18px;
+    }
+
+    .producto{
+      background:var(--card);
+      border:2px solid var(--crim);
+      border-radius:12px;
+      padding:12px;
+      cursor:pointer;
+      transition: transform .22s, box-shadow .22s;
+      min-height:320px;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .producto:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 8px 30px rgba(160,0,0,.18); }
+    .producto img{ width:100%; height:200px; object-fit:cover; border-radius:8px; display:block; }
+    .producto p{ margin:0; font-weight:700; color:var(--light); }
+
+    #carrito{
+      width:270px; background:var(--card); border:2px solid var(--crim);
+      border-radius:10px; padding:12px; position:sticky; top:18px; height:fit-content; align-self:start;
+    }
+    #carrito h3{ margin:6px 0 10px; color:var(--crim); }
+    #listaCarrito{ list-style:none; padding:0; margin:0 0 10px; max-height:360px; overflow:auto; }
+    #listaCarrito li{ padding:6px 8px; border-radius:6px; margin-bottom:6px; background:rgba(255,255,255,0.02); font-size:14px; display:flex; justify-content:space-between; align-items:center;}
+    #totalCarrito{ font-weight:800; }
+
+    button{ background:var(--crim); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700; transition:.14s; }
+    button:hover{ transform:scale(1.04); box-shadow:0 6px 18px rgba(160,0,0,0.2); }
+
+    #btnFinalizar{ display:none; width:100%; margin-top:8px; }
+
+    footer{ background:var(--card); padding:18px; border-top:2px solid var(--crim); text-align:center; color:#bbb; }
+
+    /* Modal base */
+    .modal-bg{ position:fixed; inset:0; display:none; background:rgba(0,0,0,0.7); backdrop-filter: blur(4px); justify-content:center; align-items:center; z-index:2000; }
+    .modal{ width:340px; max-width:94%; background:linear-gradient(180deg,#2a0000 0%, #170000 100%); border-radius:12px; padding:20px; text-align:center; color:var(--light); border:2px solid rgba(255,0,0,0.18); box-shadow:0 8px 40px rgba(160,0,0,0.18); transform:translateY(30px) scale(.96); opacity:0; animation:modalIn .28s forwards ease-out; font-family:"Cinzel", Georgia, serif;}
+    @keyframes modalIn{ to{ transform:none; opacity:1 } }
+    .modal h3{ margin:0 0 8px; color:#ffdede; }
+    .modal p{ margin:0 0 14px; color:#ffecec; }
+    .modal .controls{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+    .modal .controls button{ padding:10px 14px; border-radius:8px; min-width:110px; }
+
+    .flame{ width:100%; height:6px; margin-top:12px; filter:blur(.6px); background: radial-gradient(circle at 20% 50%, rgba(255,80,80,.22), transparent 12%), radial-gradient(circle at 80% 50%, rgba(255,20,20,.12), transparent 10%); border-radius:8px; box-shadow:0 0 30px rgba(255,40,40,0.12); }
+
+    @media(max-width:880px){ main{ flex-direction:column; align-items:center; gap:16px } #carrito{ position:relative; width:90%; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Productos del Inframundo</h1>
+    <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="jerarquia.html">Jerarquía</a></li>
+    <li><a href="sucursales.html">Sucursales</a></li>
+    <li><a href="redes.html">Redes Sociales</a></li>
+    <li><a href="cancerbero.html">Ofrenda</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <main>
+    <div class="contenedor-productos">
+      <!-- === TUS PRODUCTOS (exactos) === -->
+      <div class="producto" data-nombre="Peluche de Lucifer" data-precio="300">
+        <img src="https://i.etsystatic.com/42159249/r/il/9a3d6b/6644537406/il_fullxfull.6644537406_jj79.jpg" alt="">
+        <p>Peluche de Lucifer - $300</p>
+      </div>
+      <div class="producto" data-nombre="Amuleto de Satán" data-precio="280">
+        <img src="https://i.etsystatic.com/20186148/r/il/abc766/3012775052/il_570xN.3012775052_o3el.jpg" alt="">
+        <p>Amuleto de Satán - $280</p>
+      </div>
+      <div class="producto" data-nombre="sudadera de demonio" data-precio="430">
+        <img src="https://m.media-amazon.com/images/I/61wagpjmB6L._AC_UF894,1000_QL80_.jpg" alt="">
+        <p>sudadera de demonio - $430</p>
+      </div>
+      <div class="producto" data-nombre="mascara de demonio" data-precio="440">
+        <img src="https://acdn-us.mitiendanube.com/stores/005/477/851/products/30086_baphomet-god-14-copia-a9f6d4e49ea5731ee717425065337453-1024-1024.webp" alt="">
+        <p>mascara de demonio - $440</p>
+      </div>
+      <div class="producto" data-nombre="cruz invertida de baphomet" data-precio="640">
+        <img src="https://m.media-amazon.com/images/I/81i6hz7+G5L.jpg" alt="">
+        <p>cruz invertida de baphomet - $640</p>
+      </div>
+      <div class="producto" data-nombre="figura de husk" data-precio="440">
+        <img src="https://animenoseichi.com/files/productos/img_406736_2420cc2f79ac961c28a8dfd9630973bd_1_700x700_1.webp" alt="">
+        <p>figura de husk - $440</p>
+      </div>
+      <div class="producto" data-nombre="figura de alastor" data-precio="440">
+        <img src="https://santoryuresinscollectors.com/cdn/shop/files/HazbinHotelGoodSmileCompanyAlastorPopUpParadeLicensedPVCFigure_2.webp" alt="">
+        <p>figura de alastor - $440</p>
+      </div>
+      <div class="producto" data-nombre="figura de lucifer" data-precio="400">
+        <img src="https://http2.mlstatic.com/D_Q_NP_732951-MLU73321367438_122023-O.webp" alt="">
+        <p>figura de lucifer - $400</p>
+      </div>
+      <div class="producto" data-nombre="pintura de lucifer" data-precio="4000">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Fallen_Angel_%28Alexandre_Cabanel%29.jpg" alt="">
+        <p>pintura de lucifer - $4,000</p>
+      </div>
+      <div class="producto" data-nombre="libro de enoch" data-precio="1250">
+        <img src="https://m.media-amazon.com/images/I/71sg9cWh6+L._UF1000,1000_QL80_.jpg" alt="">
+        <p>libro de enoch - $1,250</p>
+      </div>
+      <div class="producto" data-nombre="tunica negra lisa" data-precio="360">
+        <img src="https://d22fxaf9t8d39k.cloudfront.net/74db8d25bc5ff3aafa270024192c835e6dc33a7ef0c9f2b8bccf1099ce21155d4950.jpeg" alt="">
+        <p>tunica negra lisa - $360</p>
+      </div>
+      <div class="producto" data-nombre="vino tinto los vascos" data-precio="340">
+        <img src="https://lacastellana.com/cdn/shop/products/LOSVASCOSCS.jpg?v=1743118773&width=400" alt="">
+        <p>vino tinto los vascos - $340</p>
+      </div>
+      <div class="producto" data-nombre="peluche de murcielago de ozzy" data-precio="40">
+        <img src="https://store.ozzy.com/cdn/shop/products/OZ_PlushBat_front2_68017238-702e-4d34-8501-12a872853c98_300x300.png?v=1700097852" alt="">
+        <p>peluche de murcielago de ozzy - $40</p>
+      </div>
+      <div class="producto" data-nombre="vino edicion limitada de ozzy" data-precio="690">
+        <img src="https://welocalbrandhoodie.com/wp-content/uploads/2025/07/limited-edition-ozzy-osbourne-1948-2025-whiskey-bottle-2-6i3yw.jpg" alt="">
+        <p>vino edicion limitada de ozzy - $690</p>
+      </div>
+      <div class="producto" data-nombre="pato ozzy" data-precio="50">
+        <img src="https://i5.walmartimages.com/seo/Ozzy-Osbourne-Cosplaying-Rubber-Duck-Vinyl-Figure-2-9in-Tall-Limited-Edition-Collectible-Tribute-to-the-Prince-of-Darkness_abf2c5d5-313a-47f5-8e5d-df5aff5d3eaf.6d4db34ee1199a271bfadd8f1288a198.jpeg" alt="">
+        <p>pato ozzy - $50</p>
+      </div>
+      <div class="producto" data-nombre="mascara de corey taylor" data-precio="3000">
+        <img src="https://i.etsystatic.com/22583759/r/il/542c0d/5219410810/il_570xN.5219410810_axnu.jpg" alt="">
+        <p>mascara de corey taylor - $3,000</p>
+      </div>
+      <div class="producto" data-nombre="figura de Fluttershy" data-precio="250">
+        <img src="https://detqhtv6m6lzl.cloudfront.net/HCLContenido/producto/FullImage/2500014359760-1.jpg" alt="">
+        <p>figura de Fluttershy - $250</p>
+      </div>
+      <div class="producto" data-nombre="omnitrix" data-precio="190">
+        <img src="https://i.etsystatic.com/36816446/r/il/8c8a16/6665409584/il_fullxfull.6665409584_k4wx.jpg" alt="">
+        <p>omnitrix - $190</p>
+      </div>
+      <div class="producto" data-nombre="pase al infierno" data-precio="2000">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8ZRk4EnnIpAeF3Pi9kA53cyu-s24Ad_Mr-g&s" alt="">
+        <p>pase al infierno - $2,000</p>
+      </div>
+    </div>
+
+    <!-- carrito lateral -->
+    <aside id="carrito">
+      <h3>Carrito</h3>
+      <ul id="listaCarrito"></ul>
+      <p>Total: $<span id="totalCarrito">0</span></p>
+      <button id="btnFinalizar">Finalizar compra</button>
+    </aside>
+  </main>
+
+  <footer>
+    <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino</p>
+  </footer>
+
+  <!-- Modal producto -->
+  <div class="modal-bg" id="modalOpcionesBg" aria-hidden="true">
+    <div class="modal" id="modalOpciones" role="dialog" aria-modal="true">
+      <h3 id="modalNombre">Producto</h3>
+      <p id="modalPrecio">$0</p>
+      <div class="controls">
+        <button id="btnComprarAhora">Comprar ahora</button>
+        <button id="btnAgregarCarrito">Agregar al carrito</button>
+        <button id="btnCancelar">Cancelar</button>
+      </div>
+      <div class="flame" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- Modal notificación (Compra realizada) -->
+  <div class="modal-bg" id="modalNotificacionBg" aria-hidden="true">
+    <div class="modal" id="modalNotificacion" role="dialog" aria-modal="true">
+      <h3>Compra realizada</h3>
+      <p>Tu pago se procesó correctamente.</p>
+      <div class="controls">
+        <button id="btnNotiOK">OK</button>
+      </div>
+      <div class="flame" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- Modal preguntar seguir -->
+  <div class="modal-bg" id="modalSeguirBg" aria-hidden="true">
+    <div class="modal" id="modalSeguir" role="dialog" aria-modal="true">
+      <h3>¿Deseas seguir comprando?</h3>
+      <p>Tu carrito fue procesado.</p>
+      <div class="controls">
+        <button id="btnSeguir">Sí</button>
+        <button id="btnNoSeguir">No</button>
+      </div>
+      <div class="flame" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const productos = document.querySelectorAll('.producto');
+      const modalOpcionesBg = document.getElementById('modalOpcionesBg');
+      const modalNotificacionBg = document.getElementById('modalNotificacionBg');
+      const modalSeguirBg = document.getElementById('modalSeguirBg');
+
+      const modalNombre = document.getElementById('modalNombre');
+      const modalPrecio = document.getElementById('modalPrecio');
+      const btnComprarAhora = document.getElementById('btnComprarAhora');
+      const btnAgregarCarrito = document.getElementById('btnAgregarCarrito');
+      const btnCancelar = document.getElementById('btnCancelar');
+      const btnNotiOK = document.getElementById('btnNotiOK');
+      const btnSeguir = document.getElementById('btnSeguir');
+      const btnNoSeguir = document.getElementById('btnNoSeguir');
+
+      const listaCarrito = document.getElementById('listaCarrito');
+      const totalCarritoSpan = document.getElementById('totalCarrito');
+      const btnFinalizar = document.getElementById('btnFinalizar');
+
+      let productoActual = { nombre: '', precio: 0 };
+      let carrito = [];
+      let total = 0;
+
+      // abrir modal opciones al hacer click en producto
+      productos.forEach(p => {
+        p.addEventListener('click', () => {
+          productoActual.nombre = p.dataset.nombre || p.querySelector('p')?.textContent || 'Producto';
+          productoActual.precio = parseInt(p.dataset.precio) || 0;
+          modalNombre.textContent = productoActual.nombre;
+          modalPrecio.textContent = '$' + productoActual.precio;
+          modalOpcionesBg.style.display = 'flex';
+        });
+      });
+
+      // opciones modal
+      btnCancelar.addEventListener('click', () => modalOpcionesBg.style.display = 'none');
+
+      btnAgregarCarrito.addEventListener('click', () => {
+        carrito.push({ ...productoActual });
+        total += productoActual.precio;
+        actualizarCarritoUI();
+        modalOpcionesBg.style.display = 'none';
+      });
+
+      btnComprarAhora.addEventListener('click', () => {
+        carrito.push({ ...productoActual });
+        total += productoActual.precio;
+        actualizarCarritoUI();
+        modalOpcionesBg.style.display = 'none';
+      });
+
+      // Finalizar compra: primero procesar, luego NOTIFICACIÓN, luego preguntar seguir
+      btnFinalizar.addEventListener('click', () => {
+        if (carrito.length === 0) return;
+        // Simular procesamiento: vaciar carrito y guardar total procesado si quieres mostrar
+        // (guardamos el monto en una variable procesado)
+        const montoProcesado = total;
+        carrito = [];
+        total = 0;
+        actualizarCarritoUI();
+
+        // mostrar notificación
+        modalNotificacionBg.style.display = 'flex';
+
+        // Cuando el usuario presione OK en la notificación, cerrar y mostrar el modal de seguir
+        btnNotiOK.onclick = () => {
+          modalNotificacionBg.style.display = 'none';
+          // abrir modal seguir
+          modalSeguirBg.style.display = 'flex';
+        };
+      });
+
+      // Modal seguir comprando
+      btnSeguir.addEventListener('click', () => {
+        modalSeguirBg.style.display = 'none';
+        // seguir comprando: ya estás en la tienda con carrito vacío
+      });
+
+      btnNoSeguir.addEventListener('click', () => {
+        modalSeguirBg.style.display = 'none';
+        // puedes personalizar: por ahora solo cerramos el modal (ya procesamos la compra)
+      });
+
+      // cerrar modales al click en el fondo
+      [modalOpcionesBg, modalNotificacionBg, modalSeguirBg].forEach(bg => {
+        bg.addEventListener('click', (e) => {
+          if (e.target === bg) bg.style.display = 'none';
+        });
+      });
+
+      // actualizar UI del carrito
+      function actualizarCarritoUI() {
+        listaCarrito.innerHTML = '';
+        carrito.forEach((item, idx) => {
+          const li = document.createElement('li');
+          li.textContent = `${item.nombre} - $${item.precio}`;
+          const btnQ = document.createElement('button');
+          btnQ.textContent = 'X';
+          btnQ.style.background = 'transparent';
+          btnQ.style.border = '1px solid rgba(255,255,255,0.06)';
+          btnQ.style.color = 'var(--light)';
+          btnQ.style.cursor = 'pointer';
+          btnQ.onclick = (ev) => {
+            ev.stopPropagation();
+            total -= item.precio;
+            carrito.splice(idx, 1);
+            actualizarCarritoUI();
+          };
+          li.appendChild(btnQ);
+          listaCarrito.appendChild(li);
+        });
+        totalCarritoSpan.textContent = total;
+        btnFinalizar.style.display = carrito.length > 0 ? 'block' : 'none';
+      }
+
+      // inicial
+      actualizarCarritoUI();
+    });
+  </script>
+</body>
+</html>

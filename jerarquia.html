@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerarquía Infernal - Demonología Antigua</title>
+  <style>
+    body {
+      background-color: #1e1111;
+      color: #f5f5f5;
+      font-family: "Cinzel", serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* HUMO */
+    .humo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .humo div {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      opacity: 0.25;
+      animation: flotar 40s linear infinite;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes flotar {
+      0% { transform: translate(0, 100vh) scale(1); opacity: 0.1; }
+      25% { transform: translate(50vw, 60vh) scale(1.3); opacity: 0.3; }
+      50% { transform: translate(-20vw, 30vh) scale(1.5); opacity: 0.4; }
+      75% { transform: translate(30vw, -10vh) scale(1.7); opacity: 0.25; }
+      100% { transform: translate(0, -30vh) scale(2); opacity: 0.1; }
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 20px;
+      box-shadow: 0 0 15px crimson;
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul { list-style: none; padding: 0; }
+    nav ul li { display: inline-block; margin: 0 15px; }
+    nav ul li a { color: #f5f5f5; text-decoration: none; font-weight: bold; }
+    nav ul li a:hover { color: crimson; }
+
+    h1, h2 { color: crimson; position: relative; z-index: 2; }
+
+    .intro {
+      margin: 40px auto;
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .demonio {
+      background-color: #181818;
+      border: 2px solid crimson;
+      border-radius: 12px;
+      width: 250px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px #8b0000;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .demonio:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px crimson;
+    }
+
+    .demonio img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      padding: 15px;
+      color: #aaa;
+      margin-top: 40px;
+      box-shadow: 0 -5px 15px crimson;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* MODAL INFERNAL */
+    #modalInfernal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .contenido-modal {
+      background: #1a1a1a;
+      padding: 30px;
+      border: 3px solid crimson;
+      width: 70%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px crimson;
+      text-align: center;
+      animation: aparecer .3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .cerrar {
+      margin-top: 20px;
+      cursor: pointer;
+      color: crimson;
+      font-weight: bold;
+      font-size: 18px;
+      transition: .3s;
+    }
+
+    .cerrar:hover { color: #ff4d4d; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HUMO -->
+  <div class="humo">
+    <div style="left:10%; animation-delay:0s;"></div>
+    <div style="left:30%; animation-delay:5s;"></div>
+    <div style="left:50%; animation-delay:10s;"></div>
+    <div style="left:70%; animation-delay:15s;"></div>
+    <div style="left:85%; animation-delay:20s;"></div>
+  </div>
+
+<header>
+  <h1>Jerarquía Infernal</h1>
+  <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="jerarquia.html">Jerarquía</a></li>
+    <li><a href="sucursales.html">Sucursales</a></li>
+    <li><a href="redes.html">Redes Sociales</a></li>
+    <li><a href="cancerbero.html">Ofrenda</a></li>
+  </ul>
+</nav>
+
+</header>
+
+<section class="intro">
+  <h2>Los 20 Demonios Principales del Inframundo</h2>
+  <p>
+    Conoce a las entidades más poderosas del abismo, señores del caos y la sabiduría prohibida.
+  </p>
+</section>
+
+<section class="galeria">
+
+  <div class="demonio" onclick="mostrarDemonio('Lucifer', 'Caído de la luz eterna, símbolo del orgullo que se volvió fuego. Su voz aún resuena como un eco celestial fracturado.')">
+    <img src="https://www.diziler.com/wp-content/uploads/2024/12/lucifer-iptalden-dondu-lucifer-4-sezon-netflixte-16933-1024x849.jpg">
+    <h3>Lucifer</h3>
+    <p>Portador de la luz caída.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Belcebú', 'Señor de las plagas y del dominio enfermizo, aquel cuyo nombre retumba en los desiertos de la descomposición eterna.')">
+    <img src="https://pm1.aminoapps.com/7449/4053a7e5c777f53b650694d962c98bf6472d3d37r1-720-721v2_hq.jpg">
+    <h3>Belcebú</h3>
+    <p>Rey de las moscas.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Leviatán', 'La serpiente del océano primigenio, la que duerme en el fondo del caos esperando el crujir del fin.')">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpFJ3DztkY-uE-Aw7ZKbGcUjKIb3iHAA2Iig&s">
+    <h3>Leviatán</h3>
+    <p>Serpiente del abismo.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Asmodeo', 'Príncipe del deseo, guardián de lo prohibido. Quien toca su sombra siente latir sus tentaciones más dormidas.')">
+    <img src="https://preview.redd.it/how-is-asmodeus-considered-the-weakest-sin-v0-orymbgeamhwe1.jpeg?width=640&crop=smart&auto=webp&s=64f12ab9ded4c08e3bee7aff07469d564bef5754">
+    <h3>Asmodeo</h3>
+    <p>Dueño de la lujuria.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Belial', 'Corruptor de voluntades, espíritu libre que se convirtió en humo y tentación para quienes buscan poder sin cadenas.')">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx4kpX6H2cGOpAbp6q5BwCfwAKjvLYznltCA&s">
+    <h3>Belial</h3>
+    <p>Señor de la corrupción.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Astaroth', 'Duque inmortal, custodio de secretos que queman. Su sabiduría es un filo que corta mente y alma.')">
+    <img src="https://preview.redd.it/astaroth-said-to-be-the-dark-twin-of-demiurge-after-his-v0-ouuthx4nafz81.jpg?auto=webp&s=13877c5a2879b15a6331dfdd583cc8c130e334d5">
+    <h3>Astaroth</h3>
+    <p>Maestro del saber oscuro.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('Alastor', 'conocido como el Devorador de Voces, fue en vida un cazador implacable cuyo nombre hacía temblar ciudades enteras. Tras su muerte, su espíritu regresó convertido en un demonio vengador, un juez silencioso que persigue a quienes derraman sangre injustamente. Su presencia se siente como un murmullo distorsionado en el viento, y su sonrisa —afilada y eterna— anuncia que alguien será silenciado para siempre. Alastor no castiga por odio, sino por equilibrio: donde reina el caos, él aparece para cobrar las deudas que nadie quiere recordar.')">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcOoT4HfVjV6fN_EKLaYm7fCC8xV_k9jRKQ&s">
+    <p>señor del castigo  .</p>
+  </div>
+
+   <div class="demonio" onclick="mostrarDemonio('samael', 'nació entre ángeles, pero su espíritu ardía con una curiosidad prohibida. Fue el primero en cuestionar el orden divino, y por ello fue expulsado sin juicio. En su caída, su gracia se pudrió y su toque se volvió mortal. Ahora recorre la frontera entre vida y muerte, susurrando tentaciones que doblan la voluntad de reyes y mendigos por igual.')">
+    <img src="https://i.scdn.co/image/ab67616d0000b273aee484b16e5829c576426b53">
+    <h3>samael</h3>
+    <p>Señor de la intriga.</p>
+  </div>
+  
+   <div class="demonio" onclick="mostrarDemonio('abraxas', 'no es demonio ni dios: es ambas cosas a la vez. Su existencia representa el caos absoluto, un equilibrio imposible entre creación y destrucción. Quienes pronuncian su nombre en rituales antiguos afirman escuchar voces dobles, una que promete poder y otra que exige entrega total del alma.')">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/39c39c155067033.634defa0e1f25.png">
+    <h3>abraxas</h3>
+    <p>Señor del equlibrio.</p>
+  </div>
+
+   <div class="demonio" onclick="mostrarDemonio('mammon', 'El espíritu que habita cada deseo de tener más. Fue un ángel contador, obsesionado con el orden del universo, hasta que los números se volvieron cadenas. Caído por su propia ambición, ahora reina donde el brillo del oro eclipsa el brillo del alma. Su mirada siempre está calculando, incluso cuando sonríe.')">
+    <img src="https://youtooz.com/cdn/shop/files/3b79k20266.png?v=1762268575">
+    <h3>mammon</h3>
+    <p>Señor de la ambicion.</p>
+  </div>
+
+  <div class="demonio" onclick="mostrarDemonio('phenex', 'Un demonio poeta. Antes fue un ángel cantor, uno de los que afinaba la luz del cosmos. Su caída fue sencilla: empezó a sentir más de lo permitido. Escribió versos que hablaban de la duda, de la tristeza, de la fragilidad del cielo… y lo exiliaron. Ahora aparece envuelto en llamas suaves, recitando poemas que duelen por ser demasiado honestos. No destruye: incomoda. Y eso a veces es peor.')">
+    <img src="https://static.wikia.nocookie.net/gods_and_demons/images/f/f9/Phoenix_lykosthenes.jpg/revision/latest/thumbnail/width/360/height/450?cb=20231004231619">
+    <h3>phenex</h3>
+    <p>Señor de la decepcion.</p>
+  </div>
+
+
+</section>
+
+<!-- MODAL -->
+<div id="modalInfernal">
+  <div class="contenido-modal">
+    <h2 id="tituloModal"></h2>
+    <p id="textoModal"></p>
+    <div class="cerrar" onclick="cerrarModal()">Cerrar</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino </p>
+</footer>
+
+<script>
+function mostrarDemonio(nombre, descripcion) {
+  document.getElementById("tituloModal").innerText = nombre;
+  document.getElementById("textoModal").innerText = descripcion;
+  document.getElementById("modalInfernal").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modalInfernal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

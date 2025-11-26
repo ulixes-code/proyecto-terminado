@@ -1,0 +1,141 @@
+/* --- Demonología Antigua - Estética Tétrica y Oscura --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+
+body {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%), 
+              url('imagenes/fondo-demonologia.jpg') no-repeat center center fixed;
+  background-blend-mode: multiply;
+  background-size: cover;
+  color: #d6cfc0;
+  font-family: 'Cinzel Decorative', serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Encabezado --- */
+header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(15, 0, 0, 0.85));
+  text-align: center;
+  padding: 2rem 0;
+  border-bottom: 3px solid #9c7c13;
+  box-shadow: 0 0 35px rgba(180, 140, 10, 0.4);
+}
+
+header h1 {
+  color: #f7d774;
+  font-size: 2.8rem;
+  letter-spacing: 4px;
+  margin: 0;
+  text-shadow: 0 0 12px #b88c00, 0 0 25px rgba(255, 230, 150, 0.3);
+}
+
+/* --- Navegación --- */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+nav a {
+  color: #caa62a;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.4s ease;
+}
+
+nav a:hover {
+  color: #ffef9c;
+  text-shadow: 0 0 15px #f7d774, 0 0 25px rgba(255, 255, 150, 0.5);
+  transform: scale(1.05);
+}
+
+/* --- Sección de bienvenida --- */
+.bienvenida {
+  background: radial-gradient(circle at top, rgba(20, 10, 0, 0.8), rgba(0, 0, 0, 0.95));
+  margin: 3rem auto;
+  width: 80%;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 40px rgba(150, 110, 10, 0.3);
+  text-align: center;
+  backdrop-filter: blur(3px);
+}
+
+.bienvenida h2 {
+  color: #ffcc00;
+  font-size: 2.2rem;
+  text-shadow: 0 0 12px #b88c00;
+}
+
+.bienvenida p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #e0d8b0;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+/* --- Sección destacada --- */
+.destacado {
+  background: linear-gradient(to bottom right, rgba(5, 5, 5, 0.95), rgba(20, 10, 0, 0.8));
+  margin: 2.5rem auto 4rem;
+  width: 80%;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 35px rgba(180, 130, 0, 0.4);
+}
+
+.destacado h2 {
+  color: #f7d774;
+  text-align: center;
+  text-shadow: 0 0 10px #b88c00;
+}
+
+.destacado ul {
+  list-style: square;
+  margin-left: 3rem;
+  color: #caa62a;
+  font-size: 1.1rem;
+}
+
+.destacado li {
+  margin-bottom: 0.8rem;
+  transition: 0.3s ease;
+}
+
+.destacado li:hover {
+  color: #ffef9c;
+  text-shadow: 0 0 10px #f7d774;
+  transform: translateX(5px);
+}
+
+/* --- Pie de página --- */
+footer {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(20, 10, 0, 0.8));
+  text-align: center;
+  padding: 1rem;
+  color: #e8d580;
+  border-top: 3px solid #9c7c13;
+  box-shadow: 0 -2px 25px rgba(180, 140, 10, 0.3);
+  font-size: 0.95rem;
+  text-shadow: 0 0 8px #b88c00;
+}
+
+/* --- Imágenes decorativas --- */
+.decoracion {
+  display: block;
+  margin: 2rem auto;
+  width: 220px;
+  opacity: 0.8;
+  filter: brightness(0.8) sepia(50%);
+  transition: 0.4s;
+}
+
+.decoracion:hover {
+  opacity: 1;
+  transform: scale(1.07) rotate(1deg);
+  filter: brightness(1) sepia(0%);
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ofrenda a Cancerbero</title>
+
+  <style>
+    body {
+      background-color: #0f0a0a;
+      color: #f5f5f5;
+      font-family: "Cinzel", serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* -------------------- HUMO ANIMADO -------------------- */
+    .humo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .humo div {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      animation: flotar 45s linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes flotar {
+      0% { transform: translate(-10vw, 100vh) scale(1); }
+      50% { transform: translate(20vw, -20vh) scale(1.5); }
+      100% { transform: translate(-10vw, -50vh) scale(2); }
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 20px;
+      box-shadow: 0 0 15px crimson;
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: crimson;
+      text-shadow: 0 0 10px crimson;
+    }
+
+    h1 {
+      color: crimson;
+      margin-top: 30px;
+      text-shadow: 0 0 15px crimson;
+      animation: brillar 2s infinite alternate;
+    }
+
+    @keyframes brillar {
+      0% { text-shadow: 0 0 10px crimson; }
+      100% { text-shadow: 0 0 25px red; }
+    }
+
+    /* -------------------- CONTENEDOR DE OFRENDA -------------------- */
+    .ofrenda {
+      width: 85%;
+      margin: 50px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,0,0,0.3);
+      box-shadow: 0 0 35px rgba(255, 0, 0, 0.25);
+      position: relative;
+      z-index: 2;
+      animation: aparecer 1.5s ease-out;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -------------------- FOTO -------------------- */
+    .foto-cancerbero {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid crimson;
+      box-shadow: 0 0 25px crimson;
+      animation: pulso 3s infinite ease-in-out;
+    }
+
+    @keyframes pulso {
+      0% { box-shadow: 0 0 15px crimson; }
+      100% { box-shadow: 0 0 35px crimson; }
+    }
+
+    /* -------------------- FRASES EN CAJAS BLANCAS -------------------- */
+    .frase {
+      margin: 30px auto;
+      padding: 25px 20px;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #220000;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 14px;
+      width: 75%;
+      line-height: 1.7;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      animation: latir 2.5s infinite ease-in-out;
+    }
+
+    @keyframes latir {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.03); }
+    }
+
+    p {
+      font-size: 1.18rem;
+      line-height: 1.8;
+      text-align: justify;
+      padding: 0 25px;
+    }
+
+    /* -------------------- VELAS -------------------- */
+    .velas {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .vela {
+      width: 20px;
+      height: 90px;
+      background: #333;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .flama {
+      width: 20px;
+      height: 35px;
+      background: radial-gradient(circle, #ffcc00 0%, #ff3300 70%, transparent 100%);
+      border-radius: 50%;
+      position: absolute;
+      top: -25px;
+      left: 0;
+      animation: flamear 0.15s infinite alternate ease-in-out;
+    }
+
+    @keyframes flamear {
+      0% { transform: translateX(-2px) scale(1); opacity: 0.9; }
+      100% { transform: translateX(2px) scale(1.1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HUMO -->
+<div class="humo">
+  <div style="left:10%; animation-delay:0s;"></div>
+  <div style="left:40%; animation-delay:5s;"></div>
+  <div style="left:70%; animation-delay:10s;"></div>
+</div>
+
+<header>
+  <h1>Ofrenda a Cancerbero</h1>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="promociones.html">Promociones</a></li>
+      <li><a href="jerarquia.html">Jerarquía</a></li>
+      <li><a href="sucursales.html">Sucursales</a></li>
+      <li><a href="redes.html">Redes Sociales</a></li>
+      <li><a href="cancerbero.html">Ofrenda</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="ofrenda">
+
+  <img class="foto-cancerbero" 
+       src="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo400/14991982/14991982-1620349815309-b54a69efbeda2.jpg" 
+       alt="Cancerbero">
+
+  <h2 style="color: crimson; margin-top: 25px;">
+    Recuerdo del que recitaba verdades que nadie entendía
+  </h2>
+
+  <p>
+    Aquí se levanta un altar para Cancerbero, voz rasgada del inframundo urbano,
+    poeta de heridas abiertas y profeta accidental de los que cargan tormentas en silencio.
+    Su música fue daga y refugio, una llama que no buscaba iluminar,
+    pero que terminó guiando a los rotos que vagaban sin norte.
+  </p>
+
+  <!-- FRASE 1 -->
+  <div class="frase">
+    “Para los que nacimos sin tener dónde caer,  
+    solo nos queda aprender a volar.”
+  </div>
+
+  <p>
+    Esta ofrenda no es idolatría, es memoria.  
+    Una forma de agradecerle a quien convirtió el dolor en arte  
+    y la crudeza en un espejo donde muchos por fin se reconocieron.  
+    Que su nombre resuene aquí como un latido eterno,  
+    entre humo, fuego y letras que siguen vivas.
+  </p>
+
+  <!-- FRASE 2 - COMPLETA -->
+  <div class="frase">
+    “Si quieres cambiar al mundo, cámbiate a ti primero…<br>
+    Que pa' ser mejor persona no se necesita dinero.”  
+    <br><br>
+    Y es que la guerra más dura no está fuera, está adentro,  
+    en el ruido que callas, en lo que finges y en lo que temo.  
+    A veces la vida te arrastra como río violento,  
+    pero hasta la piedra más fría cede ante un buen intento.  
+    <br><br>
+    El mundo no lo arreglan discursos ni lo hace el gobierno,  
+    se arregla cuando tú decides ser más justo y sincero.
+  </div>
+
+  <!-- VELAS ANIMADAS -->
+  <div class="velas">
+    <div class="vela"><div class="flama"></div></div>
+    <div class="vela"><div class="flama"></div></div>
+    <div class="vela"><div class="flama"></div></div>
+  </div>
+
+</section>
+
+<footer>
+    <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino</p>
+  </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonología Antigua - Inicio</title>
+  <link rel="stylesheet" href="estilos.css">
+
+  <style>
+    /* --- Estilos del Chat Infernal --- */
+    #openChat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: crimson;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px crimson;
+      z-index: 9999;
+    }
+
+    #chatBox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 420px;
+      background: #1a1a1a;
+      border: 2px solid crimson;
+      border-radius: 15px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 0 25px crimson;
+      z-index: 9999;
+    }
+
+    #chatBox header {
+      background: crimson;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chatBody {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      color: #fff;
+      font-family: 'Georgia', serif;
+    }
+
+    .msg {
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+
+    .user {
+      background: #333;
+      margin-left: auto;
+    }
+
+    .bot {
+      background: crimson;
+      margin-right: auto;
+    }
+
+    #chatInput {
+      display: flex;
+      padding: 10px;
+      gap: 5px;
+    }
+
+    #chatInput input {
+      flex: 1;
+      padding: 7px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    #chatInput button {
+      padding: 7px 10px;
+      background: crimson;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #closeChat {
+      cursor: pointer;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Enciclopedia de la Demonología Antigua</h1>
+   <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="jerarquia.html">Jerarquía</a></li>
+    <li><a href="sucursales.html">Sucursales</a></li>
+    <li><a href="redes.html">Redes Sociales</a></li>
+    <li><a href="cancerbero.html">Ofrenda</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <main>
+    <section class="bienvenida">
+      <h2>Bienvenido al Reino del Saber Oscuro</h2>
+      <p>
+        Explora los secretos de las antiguas jerarquías infernales, descubre nombres olvidados
+        y sumérgete en el estudio de las fuerzas más profundas del inframundo. Aquí,
+        el conocimiento prohibido aguarda a quienes se atreven a mirar más allá del velo.
+      </p>
+    </section>
+
+    <section class="destacado">
+      <h2>Lo Más Consultado</h2>
+      <ul>
+        <li>Grimorios y textos prohibidos</li>
+        <li>Simbolismo demoníaco antiguo</li>
+        <li>Rituales y sellos de protección</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino</p>
+  </footer>
+
+  <!-- Botón de abrir chat -->
+  <button id="openChat">🜏 Chat</button>
+
+  <!-- Chat Caja -->
+  <div id="chatBox">
+    <header>
+      Oráculo Infernal
+      <span id="closeChat">✖</span>
+    </header>
+
+    <div id="chatBody"></div>
+
+    <div id="chatInput">
+      <input type="text" id="chatMessage" placeholder="Susurra tu duda...">
+      <button id="sendMsg">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Script del chat -->
+  <script>
+    const chatBox = document.getElementById("chatBox");
+    const openChat = document.getElementById("openChat");
+    const closeChat = document.getElementById("closeChat");
+    const sendMsg = document.getElementById("sendMsg");
+    const chatBody = document.getElementById("chatBody");
+    const chatMessage = document.getElementById("chatMessage");
+
+    openChat.addEventListener("click", () => {
+      chatBox.style.display = "flex";
+      openChat.style.display = "none";
+    });
+
+    closeChat.addEventListener("click", () => {
+      chatBox.style.display = "none";
+      openChat.style.display = "block";
+    });
+
+    sendMsg.addEventListener("click", sendMessage);
+    chatMessage.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      let text = chatMessage.value.trim();
+      if (text === "") return;
+
+      let userMsg = document.createElement("div");
+      userMsg.classList.add("msg", "user");
+      userMsg.textContent = text;
+      chatBody.appendChild(userMsg);
+
+      chatMessage.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        let botMsg = document.createElement("div");
+        botMsg.classList.add("msg", "bot");
+        botMsg.textContent = generateResponse(text);
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 700);
+    }
+
+    function generateResponse(msg) {
+      msg = msg.toLowerCase();
+
+      if (msg.includes("hola") || msg.includes("buenas")) {
+        return "🔥 Las sombras te saludan… ¿qué inquietud te trae a este reino?";
+      }
+
+      if (msg.includes("demonio") || msg.includes("invocar") || msg.includes("ritual")) {
+        return "👁️ Cuidado, viajero… no todo lo que invocas decide marcharse después.";
+      }
+
+      if (msg.includes("producto") || msg.includes("comprar") || msg.includes("precio")) {
+        return "💰 Los artefactos prohibidos esperan en la sección de productos. Elige con sabiduría.";
+      }
+
+      if (msg.includes("adios") || msg.includes("bye")) {
+        return "🌑 Camina con calma entre las sombras. El inframundo siempre recuerda.";
+      }
+
+      if (msg.includes("quien eres") || msg.includes("qué eres")) {
+        return "✨ Soy el Oráculo Infernal, un eco rojo en el vacío digital, respondiendo a quienes se atreven.";
+      }
+
+      if (msg.includes("tienen redes") || msg.includes("hay redes")) {
+        return "✨ las redes para contactarnos estan al final pero seras capaz de llegar al final.";
+      }
+
+      if (msg.includes("poema") || msg.includes("1")) {
+        return "✨ Caí sin gritarcomo quien ya sabía que el cielo nunca lo quiso.Mis alas ardieron lento,como un recuerdo que se niega a morir.Ahora camino entre sombras que susurran mi nombre,y aunque ya no vuelo,aún brillo…pero solo cuando nadie mira.";
+      }
+
+      if (msg.includes("2") || msg.includes("segundo poema")) {
+        return"El eco del abismo*\nDentro del pecho guardo un silencio que muerde. A veces llora, otras ríe… y no sé cuál hiere más. El abismo no está afuera, vive en mí.";
+       }  
+      
+
+if (msg.includes("3") || msg.includes("tercer poema")) {
+  return "🖤 *Corazón de ruinas*\nTe quise con fuego, y me regresaste cenizas. Siempre fui ruina disfrazada de templo. Mis grietas respiran donde antes vivía tu nombre.";
+}
+
+
+if (msg.includes("4") || msg.includes("cuarto poema")) {
+  return "🌘 *La noche que me tragó*\nLa noche no cayó sobre mí… yo caí en ella. Me abrazó como si estuviera hecha para mis sombras, y desde entonces duermo en sus entrañas.";
+}
+
+
+      return "🌒 El abismo escuchó tu susurro… pregunta algo más y quizá las sombras respondan.";
+    }
+  </script>
+
+</body>
+</html>
