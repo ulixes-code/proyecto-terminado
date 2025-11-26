@@ -59,12 +59,85 @@
       box-shadow: 0 0 20px crimson;
       width: 80%;
       max-width: 600px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .promo:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px crimson;
     }
 
     .promo img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 10px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      border: 2px solid crimson;
+      border-radius: 15px;
+      padding: 25px;
+      z-index: 100;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 0 30px crimson;
+    }
+
+    .modal h3 {
+      color: crimson;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .modal-buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .accept {
+      background-color: crimson;
+      color: #fff;
+    }
+
+    .accept:hover {
+      background-color: #ff3333;
+    }
+
+    .cancel {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .cancel:hover {
+      background-color: #777;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 50;
     }
 
     footer {
@@ -77,38 +150,37 @@
 <body>
   <header>
     <h1>🔥 Promociones Infernalmente Tentadoras 🔥</h1>
-
     <nav>
-  <ul>
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="productos.html">Productos</a></li>
-    <li><a href="promociones.html">Promociones</a></li>
-    <li><a href="jerarquia.html">Jerarquía</a></li>
-    <li><a href="sucursales.html">Sucursales</a></li>
-    <li><a href="redes.html">Redes Sociales</a></li>
-    <li><a href="cancerbero.html">Ofrenda</a></li>
-  </ul>
-</nav>
-
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="promociones.html">Promociones</a></li>
+        <li><a href="jerarquia.html">Jerarquía</a></li>
+        <li><a href="sucursales.html">Sucursales</a></li>
+        <li><a href="redes.html">Redes Sociales</a></li>
+        <li><a href="cancerbero.html">Ofrenda</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <main>
     <section class="ofertas">
       <h2>Ofertas del Inframundo</h2>
       <p>Aprovecha estas oportunidades únicas antes de que desaparezcan en las sombras...</p>
 
-      <div class="promo">
+      <div class="promo" data-producto="Grimorio del Abismo">
         <img src="https://i.etsystatic.com/33074101/r/il/28bcf6/7171144453/il_fullxfull.7171144453_1cvh.jpg">
         <h3>Descuento en el Grimorio del Abismo</h3>
         <p>Antes: <s>$999 MXN</s> | Ahora: <strong>$799 MXN</strong></p>
       </div>
 
-      <div class="promo">
+      <div class="promo" data-producto="Amuleto de Belial 2x1">
         <img src="https://m.media-amazon.com/images/I/81yds06m+mL._AC_UY1000_.jpg">
         <h3>Amuleto de Belial 2x1</h3>
         <p>Comparte el poder con un aliado o protégelos del mal.</p>
       </div>
 
-      <div class="promo">
+      <div class="promo" data-producto="Consulta Demonológica">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmi1o9s1CC3tlQs9SnPtQBTm2ckwwtAyAWA&s" alt="Consulta Demonológica">
         <h3>Consulta Demonológica Gratis</h3>
         <p>Al adquirir más de $1200 MXN en productos.</p>
@@ -116,8 +188,54 @@
     </section>
   </main>
 
+  <!-- Overlay y Modal -->
+  <div class="overlay"></div>
+  <div class="modal">
+    <h3>¿Deseas adquirir este producto?</h3>
+    <div class="modal-buttons">
+      <button class="accept">Sí, comprar</button>
+      <button class="cancel">No</button>
+    </div>
+  </div>
+
   <footer>
-    <p>© 2025 Enciclopedia Infernal | Todos los derechos a ulixes y el tilino</p>
+    <p>© 2025 Enciclopedia Infernal | Todos los derechos a Ulixes y el Tilino</p>
   </footer>
+
+  <script>
+    const promos = document.querySelectorAll('.promo');
+    const modal = document.querySelector('.modal');
+    const overlay = document.querySelector('.overlay');
+    const btnAceptar = document.querySelector('.accept');
+    const btnCancelar = document.querySelector('.cancel');
+
+    let productoActual = '';
+
+    promos.forEach(promo => {
+      promo.addEventListener('click', () => {
+        productoActual = promo.dataset.producto;
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+    });
+
+    btnAceptar.addEventListener('click', () => {
+      alert(`¡Gracias por adquirir ${productoActual}!  
+El inframundo te espera...  
+Que el fuego de las sombras ilumine tu camino,  
+y que cada compra sea un recordatorio de que hasta en la oscuridad  
+puede encontrarse lo valioso y verdadero.`);
+      cerrarModal();
+    });
+
+    btnCancelar.addEventListener('click', cerrarModal);
+    overlay.addEventListener('click', cerrarModal);
+
+    function cerrarModal() {
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
+
